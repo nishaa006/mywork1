@@ -1,17 +1,5 @@
 
-@mixin mobile {
-  @media (max-width: 768px) {
-    @content;
-  }
-}
-
-@mixin small-mobile {
-  @media (max-width: 480px) {
-    @content;
-  }
-}
-
-@include mobile {
+@media (max-width: 768px) {
   .container {
     padding-left: 16px;
     padding-right: 16px;
@@ -48,12 +36,39 @@
     }
     
     &__star {
+      &--1 {
+        width: 35px;
+        top: 97px;
+        left: 37px;
+      }
+      
+      &--2 {
+        width: 21px;
+        left: 92px;
+        top: 64px;
+      }
+      
+      &--3 {
+        width: 21px;
+        bottom: 24px;
+        right: 86px;
+      }
+      
+      &--4 {
+        width: 35px;
+        bottom: 28px;
+        right: 32px;
+      }
+      
       &--5 {
         display: none;
       }
       
       &--mob {
         display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
         width: 180px;
         height: auto;
       }
@@ -73,6 +88,7 @@
       line-height: 44px;
       text-align: left;
       padding: 40px 0 30px 0;
+      color: white;
     }
     
     &__star {
@@ -169,7 +185,8 @@
   }
 }
 
-@include small-mobile {
+
+@media (max-width: 480px) {
   .header {
     height: 600px;
     
