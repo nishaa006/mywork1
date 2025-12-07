@@ -1,73 +1,38 @@
-// Задание 1
-let password = 'пароль';
-let userInput = prompt('Введите пароль');
+console.log("Привет");
+console.log("Привет");
 
-if (userInput === password) {
-    console.log('Пароль введен верно');
-} else {
-    console.log('Пароль введен неправильно');
+for (let i = 1; i <= 5; i++) {
+    console.log(i);
 }
 
-// Задание 2
-let c = 0;
-
-if (c > 0 && c < 10) {
-    console.log('Верно');
-} else {
-    console.log('Неверно');
+for (let i = 7; i <= 22; i++) {
+    console.log(i);
 }
 
-c = 0;
-if (c > 0 && c < 10) console.log('Верно'); else console.log('Неверно');
+const obj = {
+    "Коля": '200',
+    "Вася": '300',
+    "Петя": '400'
+};
 
-c = 10;
-if (c > 0 && c < 10) console.log('Верно'); else console.log('Неверно');
-
-c = -3;
-if (c > 0 && c < 10) console.log('Верно'); else console.log('Неверно');
-
-c = 2;
-if (c > 0 && c < 10) console.log('Верно'); else console.log('Неверно');
-
-// Задание 3
-let d = 50;
-let e = 120;
-
-if (d > 100 || e > 100) {
-    console.log('Верно');
-} else {
-    console.log('Неверно');
+for (const key in obj) {
+    console.log(key + " — зарплата " + obj[key] + " долларов");
 }
 
-// Задание 4
-let a = '2';
-let b = '3';
-alert(Number(a) + Number(b));
+let n = 1000;
+let num = 0;
 
-// Задание 5
-let monthNumber = 12;
+while (n >= 50) {
+    n = n / 2;
+    num++;
+}
 
-switch(monthNumber) {
-    case 1:
-    case 2:
-    case 12:
-        console.log('зима');
-        break;
-    case 3:
-    case 4:
-    case 5:
-        console.log('весна');
-        break;
-    case 6:
-    case 7:
-    case 8:
-        console.log('лето');
-        break;
-    case 9:
-    case 10:
-    case 11:
-        console.log('осень');
-        break;
-    default:
-        console.log('номер месяца должен быть от 1 до 12');
+console.log(n);
+console.log(num);
+
+const firstFriday = 5;
+const daysInMonth = 31;
+
+for (let day = firstFriday; day <= daysInMonth; day += 7) {
+    console.log("Сегодня пятница, " + day + "-е число. Необходимо подготовить отчет.");
 }
