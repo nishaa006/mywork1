@@ -127,7 +127,7 @@ const circleTwo = {
     }
 };
 
-console.log("\n=== Тест функций ===");
+console.log("\nТест функций");
 console.log("Меньшее из 5 и 10:", getMinNumber(5, 10));
 console.log("Проверка числа 7:", checkIfEvenOrOdd(7));
 showSquare(4);
@@ -171,9 +171,8 @@ function guessNumberGame() {
     } while (true);
 }
 
-// новая игра 
 function mathGame() {
-    alert("Добро пожаловать в игру 'Математика'!\nРешите несколько простых задач.");
+    alert(`Добро пожаловать в игру "математика"!\nПрийти несколько простых задач.`);
     
     let correctAnswers = 0;
     
@@ -181,8 +180,7 @@ function mathGame() {
         const num1 = Math.floor(Math.random() * 10) + 1;
         const num2 = Math.floor(Math.random() * 10) + 1;
         
-        // + или -
-        const operation = Math.random() > 0.5 ? '+' : '-';
+        const operation = Math.random() > 0.5 ? '+' : '-'
         
         let problem = '';
         let correctAnswer = 0;
@@ -191,8 +189,15 @@ function mathGame() {
             problem = `${num1} + ${num2}`;
             correctAnswer = num1 + num2;
         } else {
-            problem = `${Math.max(num1, num2)} - ${Math.min(num1, num2)}`;
-            correctAnswer = Math.max(num1, num2) - Math.min(num1, num2);
+            const larger = Math.max(num1, num2);
+            const smaller = Math.min(num1, num2);
+            if (larger === smaller) {
+                problem = `${larger + 1} - ${smaller}`;
+                correctAnswer = 1;
+            } else {
+                problem = `${larger} - ${smaller}`;
+                correctAnswer = larger - smaller;
+            }
         }
         
         const userAnswer = prompt(`Задача ${i + 1}: ${problem} = ?`);
@@ -202,198 +207,266 @@ function mathGame() {
             return;
         }
         
-        // роверяем ответ
-        if (Number(userAnswer) === correctAnswer) {
-            alert("Правильно!");
+        if (userAnswer.trim() === "") {
+            alert("Вы не ввели ответ! Попробуйте еще раз.");
+            i--;
+            continue;
+        }
+        
+        // проверка на число
+        const userAnswerNumber = Number(userAnswer);
+        if (isNaN(userAnswerNumber)) {
+            alert("Пожалуйста, введите число!");
+            i--;
+            continue;
+        }
+        
+        if (userAnswerNumber == correctAnswer) {
+            alert(" Правильно!");
             correctAnswers++;
         } else {
-            alert(`Неправильно. Правильный ответ: ${correctAnswer}`);
+            alert(` Неправильно. Правильный ответ: ${correctAnswer}`);
         }
     }
     
-    // итоговый результат
-    alert(`Игра окончена! Вы решили правильно ${correctAnswers} из 3 задач.`);
+    alert(` Игра окончена! Вы решили правильно ${correctAnswers} из 3 задач.`);
 }
 
-console.log("\nзадание 1 ");
-const numbers1 = [1, 5, 4, 10, 0, 3];
-for (let i = 0; i < numbers1.length; i++) {
-    console.log(numbers1[i]);
-    if (numbers1[i] === 10) {
-        break;
-    }
-}
-
-console.log("\nзадание 2 ");
-const numbers2 = [1, 5, 4, 10, 0, 3];
-for (let i = 0; i < numbers2.length; i++) {
-    if (numbers2[i] === 4) {
-        console.log("Индекс числа 4:", i);
-        break;
-    }
-}
-
-console.log("\nзадание 3 ");
-const numbers3 = [1, 3, 5, 10, 20];
-console.log("Элементы через пробел:", numbers3.join(' '));
-
-console.log("\nзадание 4 ");
-const bigArray = [];
-for (let i = 0; i < 3; i++) {
-    const smallArray = [];
-    for (let j = 0; j < 3; j++) {
-        smallArray.push(1);
-    }
-    bigArray.push(smallArray);
-}
-console.log("Многомерный массив:", bigArray);
-
-console.log("\nзадание 5 ");
-const numbers5 = [1, 1, 1];
-numbers5.push(2, 2, 2);
-console.log("Массив с добавленными двойками:", numbers5);
-
-console.log("\nзаданеи 6 ");
-const mixedArray = [9, 8, 7, 'a', 6, 5];
-mixedArray.sort();
-const noLetterArray = [];
-for (let i = 0; i < mixedArray.length; i++) {
-    if (typeof mixedArray[i] !== 'string' || isNaN(mixedArray[i])) {
-        continue;
-    }
-    noLetterArray.push(mixedArray[i]);
-}
-console.log("Без буквы 'a':", noLetterArray);
-
-console.log("\nзадание 7 ");
-const numbers7 = [9, 8, 7, 6, 5];
-function guessNumberFromArray() {
-    const answer = prompt("Угадайте число из массива [9, 8, 7, 6, 5]:");
-    if (answer === null) return;
+// "Переверни текст" 
+function reverseTextGame() {
+    const userInput = prompt("Введите текст для переворота:");
     
-    const userNumber = Number(answer);
-    let found = false;
-    
-    for (let i = 0; i < numbers7.length; i++) {
-        if (numbers7[i] === userNumber) {
-            found = true;
-            break;
-        }
+    if (userInput === null) {
+        alert("Игра отменена");
+        return;
     }
     
-    if (found) {
-        alert("Угадал!");
+    if (userInput.trim() === "") {
+        alert("Вы ввели пустую строку!");
+        return;
+    }
+    
+    const reversedText = userInput.split('').reverse().join('');
+    alert(`Перевернутый текст: ${reversedText}`);
+}
+
+//"Камень, ножницы, бумага"
+function rockPaperScissorsGame() {
+    const choices = ["камень", "ножницы", "бумага"];
+    const userChoice = prompt("Выберите: камень, ножницы или бумага?").toLowerCase();
+    
+    if (!choices.includes(userChoice)) {
+        alert("Пожалуйста, выберите камень, ножницы или бумага!");
+        return;
+    }
+    
+    const computerChoice = choices[Math.floor(Math.random() * 3)];
+    
+    alert(`Вы выбрали: ${userChoice}\nКомпьютер выбрал: ${computerChoice}`);
+    
+    if (userChoice === computerChoice) {
+        alert("Ничья!");
+    } else if (
+        (userChoice === "камень" && computerChoice === "ножницы") ||
+        (userChoice === "ножницы" && computerChoice === "бумага") ||
+        (userChoice === "бумага" && computerChoice === "камень")
+    ) {
+        alert("Вы победили!");
     } else {
-        alert("Не угадал!");
+        alert("Компьютер победил! ");
     }
 }
 
-console.log("\nзадание 8 ");
-const text = 'abcdef';
-const letters = text.split('');
-letters.reverse();
-const reversedText = letters.join('');
-console.log("Перевернутая строка:", reversedText);
-
-console.log("\nзадание 9 ");
-const matrix = [[1, 2, 3], [4, 5, 6]];
-const flatArray = [];
-for (let i = 0; i < matrix.length; i++) {
-    for (let j = 0; j < matrix[i].length; j++) {
-        flatArray.push(matrix[i][j]);
-    }
-}
-console.log("Одномерный массив:", flatArray);
-
-console.log("\nзадание 10 ");
-const numbers10 = [1, 3, 5, 7, 9];
-for (let i = 0; i < numbers10.length - 1; i++) {
-    const sum = numbers10[i] + numbers10[i + 1];
-    console.log(`${numbers10[i]} + ${numbers10[i + 1]} = ${sum}`);
-}
-
-console.log("\nзадание 11 ");
-function getSquares(numbers) {
-    const squares = [];
-    for (let i = 0; i < numbers.length; i++) {
-        squares.push(numbers[i] * numbers[i]);
-    }
-    return squares;
-}
-const sampleNumbers = [2, 3, 4];
-console.log("Квадраты чисел:", getSquares(sampleNumbers));
-
-console.log("\nзадание 12 ");
-function getLengths(words) {
-    const lengths = [];
-    for (let i = 0; i < words.length; i++) {
-        lengths.push(words[i].length);
-    }
-    return lengths;
-}
-const sampleWords = ["кот", "собака", "птица"];
-console.log("Длины слов:", getLengths(sampleWords));
-
-console.log("\nзадание 13 ");
-function filterNegatives(numbers) {
-    const negatives = [];
-    for (let i = 0; i < numbers.length; i++) {
-        if (numbers[i] < 0) {
-            negatives.push(numbers[i]);
+// "Викторина"
+function quizGame() {
+    const quiz = [
+        {
+            question: "Какой цвет небо?",
+            options: ["1. Красный", "2. Синий", "3. Зеленый"],
+            correctAnswer: 2 
+        },
+        {
+            question: "Сколько дней в неделе?",
+            options: ["1. Шесть", "2. Семь", "3. Восемь"],
+            correctAnswer: 2
+        },
+        {
+            question: "Сколько у человека пальцев на одной руке?",
+            options: ["1. Четыре", "2. Пять", "3. Шесть"],
+            correctAnswer: 2
+        }
+    ];
+    
+    let correctAnswers = 0;
+    
+    for (let i = 0; i < quiz.length; i++) {
+        const currentQuestion = quiz[i];
+        
+        let questionText = `Вопрос ${i + 1}: ${currentQuestion.question}\n`;
+        for (let j = 0; j < currentQuestion.options.length; j++) {
+            questionText += currentQuestion.options[j] + "\n";
+        }
+        questionText += "\nВведите номер правильного ответа:";
+        
+        const userAnswer = prompt(questionText);
+        
+        if (userAnswer === null) {
+            alert("Викторина прервана");
+            return;
+        }
+        
+        const answerNumber = parseInt(userAnswer);
+        
+        if (answerNumber === currentQuestion.correctAnswer) {
+            correctAnswers++;
         }
     }
-    return negatives;
+    
+    // о результат
+    alert(`Викторина завершена!\nКоличество правильных ответов: ${correctAnswers} из ${quiz.length}`);
 }
-const mixedNumbers = [1, -2, 3, -4, 5];
-console.log("Отрицательные числа:", filterNegatives(mixedNumbers));
 
-console.log("\nзадание 14 ");
-const randomNumbers = [];
-for (let i = 0; i < 10; i++) {
-    randomNumbers.push(Math.floor(Math.random() * 11));
-}
-const evenNumbers = [];
-for (let i = 0; i < randomNumbers.length; i++) {
-    if (randomNumbers[i] % 2 === 0) {
-        evenNumbers.push(randomNumbers[i]);
+
+console.log("\n\n=== 10 НОВЫХ ЗАДАНИЙ ===");
+
+// Задание 1
+console.log("\nЗадание 1:");
+console.log("'js' в верхнем регистре:", 'js'.toUpperCase());
+
+// Задание 2
+console.log("\nЗадание 2:");
+function filterStringsByPrefix(arr, prefix) {
+    const result = [];
+    const lowerPrefix = prefix.toLowerCase();
+    
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i].toLowerCase().startsWith(lowerPrefix)) {
+            result.push(arr[i]);
+        }
     }
+    
+    return result;
 }
-console.log("Случайные числа:", randomNumbers);
-console.log("Четные числа:", evenNumbers);
+console.log("Пример использования:", filterStringsByPrefix(["JavaScript", "Java", "Python", "JQuery"], "ja"));
 
-console.log("\nзадание 15 ");
-const sixNumbers = [];
-for (let i = 0; i < 6; i++) {
-    sixNumbers.push(Math.floor(Math.random() * 10) + 1);
+// Задание 3
+console.log("\nЗадание 3:");
+const numToRound = 32.58884;
+console.log("Исходное число:", numToRound);
+console.log("До меньшего целого:", Math.floor(numToRound));
+console.log("До большего целого:", Math.ceil(numToRound));
+console.log("До ближайшего целого:", Math.round(numToRound));
+
+// Задание 4
+console.log("\nЗадание 4:");
+const numbersForMinMax = [52, 53, 49, 77, 21, 32];
+console.log("Числа:", numbersForMinMax);
+console.log("Минимальное значение:", Math.min(...numbersForMinMax));
+console.log("Максимальное значение:", Math.max(...numbersForMinMax));
+
+// Задание 5
+console.log("\nЗадание 5:");
+function getRandomNumber1To10() {
+    const randomNum = Math.floor(Math.random() * 10) + 1;
+    console.log("Случайное число от 1 до 10:", randomNum);
 }
-let total = 0;
-for (let i = 0; i < sixNumbers.length; i++) {
-    total += sixNumbers[i];
+getRandomNumber1To10();
+
+// Задание 6
+console.log("\nЗадание 6:");
+function generateRandomArray(n) {
+    const arrayLength = Math.floor(n / 2);
+    const result = [];
+    
+    for (let i = 0; i < arrayLength; i++) {
+        result.push(Math.floor(Math.random() * (n + 1)));
+    }
+    
+    return result;
 }
-const average = total / sixNumbers.length;
-console.log("6 случайных чисел:", sixNumbers);
-console.log("Среднее арифметическое:", average.toFixed(2));
+console.log("Массив для n=10:", generateRandomArray(10));
+
+// Задание 7
+console.log("\nЗадание 7:");
+function getRandomInRange(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+console.log("Случайное число от 5 до 15:", getRandomInRange(5, 15));
+
+// Задание 8
+console.log("\nЗадание 8:");
+const currentDate = new Date();
+console.log("Текущая дата:", currentDate);
+
+// Задание 9
+console.log("\nЗадание 9:");
+function getDateAfter73Days() {
+    const date = new Date();
+    date.setDate(date.getDate() + 73);
+    return date;
+}
+const dateIn73Days = getDateAfter73Days();
+console.log("Дата через 73 дня:", dateIn73Days.toLocaleDateString());
+
+// Задание 10
+console.log("\nЗадание 10:");
+function formatDateTime(date) {
+    const months = [
+        "января", "февраля", "марта", "апреля", "мая", "июня",
+        "июля", "августа", "сентября", "октября", "ноября", "декабря"
+    ];
+    
+    const daysOfWeek = [
+        "воскресенье", "понедельник", "вторник", "среда",
+        "четверг", "пятница", "суббота"
+    ];
+    
+    const day = date.getDate();
+    const month = months[date.getMonth()];
+    const year = date.getFullYear();
+    const dayOfWeek = daysOfWeek[date.getDay()];
+    
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const seconds = String(date.getSeconds()).padStart(2, '0');
+    
+    return `Дата: ${day} ${month} ${year} года — это ${dayOfWeek}.\nВремя: ${hours}:${minutes}:${seconds}`;
+}
+console.log("Форматированная дата:");
+console.log(formatDateTime(new Date()));
+
 
 document.addEventListener('DOMContentLoaded', function() {
-    console.log("Сайт загружен!");
+    console.log(" Сайт загружен! Привязываем игры к кнопкам...");
     
     const gameButtons = document.querySelectorAll('.game-detail__button');
+    console.log(`Найдено кнопок: ${gameButtons.length}`);
     
-    if (gameButtons.length > 0) {
-        gameButtons[0].addEventListener('click', function() {
-            guessNumberGame();
-        });
+    if (gameButtons[0]) {
+        gameButtons[0].addEventListener('click', guessNumberGame);
+        console.log("Кнопка 1: 'Угадай число' привязана");
     }
     
-    if (gameButtons.length > 1) {
-        gameButtons[1].addEventListener('click', function() {
-            mathGame();
-        });
-    } else if (gameButtons.length === 1) {
-        gameButtons[0].addEventListener('click', function() {
-            mathGame();
-        });
+    if (gameButtons[1]) {
+        gameButtons[1].addEventListener('click', mathGame);
+        console.log("Кнопка 2: 'Простая арифметика' привязана");
     }
+    
+    if (gameButtons[2]) {
+        gameButtons[2].addEventListener('click', reverseTextGame);
+        console.log("Кнопка 3: 'Переверни текст' привязана");
+    }
+    
+    if (gameButtons[3]) {
+        gameButtons[3].addEventListener('click', rockPaperScissorsGame);
+        console.log("Кнопка 4: 'Камень, ножницы, бумага' привязана");
+    }
+    
+    if (gameButtons[4]) {
+        gameButtons[4].addEventListener('click', quizGame);
+        console.log("Кнопка 5: 'Викторина' привязана");
+    }
+    
     
     const headerButton = document.querySelector('.header__button');
     if (headerButton) {
@@ -401,17 +474,11 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             guessNumberFromArray();
         });
+        console.log("Кнопка в шапке привязана к игре 'Угадай число из массива'");
     }
     
-const testButton = document.createElement('button');
-testButton.textContent = 'Тест заданий';
-testButton.onclick = function() {
-    alert("Все задания уже выполнены и показаны в консоли!");
-};
-    document.body.appendChild(testButton);
-    
-    console.log("\nПроверка функций");
-    console.log("minNumber(5, 3):", minNumber(5, 3));
-    console.log("checkEvenOdd(4):", checkEvenOdd(4));
-    console.log("Площадь круга радиусом 5:", circle1.getArea().toFixed(2));
+    console.log("ВСЕ ИГРЫ ПРИВЯЗАНЫ! Теперь:");
+    console.log("1. Нажмите на кнопку 'Викторина' (5-я кнопка снизу)");
+    console.log("2. Проверьте консоль - все 10 заданий выполнены");
+    console.log("3. Игра 'Переверни текст' на 3-й кнопке");
 });
