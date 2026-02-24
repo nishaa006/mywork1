@@ -219,33 +219,24 @@ function Game5() {
 }
 
 function Game6() {
-    let changesCount = 0;
+    // Находим секции
+    const sections = document.querySelectorAll('section');
+    const aboutSection = sections[1];
+    const gamesSection = sections[2];
     
-    while (true) {
-        const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
-        
-        document.body.style.backgroundColor = randomColor;
-        document.documentElement.style.backgroundColor = randomColor;
-        
-        const sections = document.querySelectorAll('section, .header, .about, .games, .footer, .container');
-        sections.forEach(section => {
-            section.style.backgroundColor = 'transparent';
-        });
-        
-        changesCount++;
-        
-        const continueGame = confirm(`Цвет ${changesCount}: ${randomColor}\n\nНажмите Нет для смены цвета\nНажмите Да для выхода`);
-        
-        if (!continueGame) {
-            break;
-        }
+    if (!aboutSection || !gamesSection) {
+        alert('Секции не найдены!');
+        return;
     }
     
-    alert(`Игра завершена! Вы изменили цвет ${changesCount} раз.`);
-}
-
-console.log("\n\n10 НОВЫХ ЗАДАНИЙ");
-
+    // Генерируем один цвет
+    const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
+    
+    // Красим обе секции
+    aboutSection.style.backgroundColor = randomColor;
+    gamesSection.style.backgroundColor = randomColor;
+    
+    alert(`Цвет ${randomColor} применен!`);}
 // 1 
 console.log("\nзадание 1 ");
 const people = [
