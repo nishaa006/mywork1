@@ -103,7 +103,6 @@ body {
 
 .about {
   background: rgb(32, 32, 39);
-  height: 1470px;
   position: relative;
   overflow: hidden;
 }
@@ -151,7 +150,101 @@ body {
   margin-top: 822px;
   left: 45px;
 }
+.header__star {
+  position: absolute;
+}
 
+.header__star--1 {
+  top: 94px;
+  left: 63px;
+}
+
+.header__star--2 {
+  top: 69px;
+  left: 156px;
+}
+
+.header__star--3 {
+  top: 538px;
+  right: 448px;
+}
+
+.header__star--4 {
+  top: 568px;
+  right: 365px;
+}
+
+.header__star--5 {
+  top: 0;
+  right: 0;
+}
+
+.header__star--mob {
+  display: none;
+}
+
+.about {
+  background: rgb(32, 32, 39);
+  position: relative;
+  overflow: hidden;
+}
+
+.about__content {
+  padding-top: 94px;
+}
+
+.about__title {
+  color: rgb(255, 255, 255);
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 78px;
+  letter-spacing: 0px;
+  text-align: left;
+}
+
+.about__text {
+  color: rgb(255, 255, 255);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 32px;
+  letter-spacing: 0px;
+  text-align: left;
+  padding-top: 24px;
+}
+
+.about__star {
+  position: absolute;
+  z-index: 20;
+}
+
+.about__star--1 {
+  margin-top: 77px;
+  right: 0;
+  z-index: 0;
+}
+
+.about__star--2 {
+  margin-top: 770px;
+  left: 28px;
+}
+
+.about__star--3 {
+  margin-top: 822px;
+  left: 45px;
+}
+/* Текст всегда сверху */
+.header__content,
+.about__content {
+  position: relative;
+  z-index: 100;
+}
+
+/* Изображения не вылезают */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
 .games-preview {
   display: flex;
   flex-wrap: wrap;
@@ -731,8 +824,7 @@ body {
   }
   
   .game-detail__content {
-    width: 50% !important;
-    max-width: 50% !important;
+    width: 50% !important;  
     padding: 48px !important;
     text-align: left !important;
     margin: 0 !important;
@@ -781,4 +873,74 @@ body {
   .game-detail:nth-child(6) {
     flex-direction: row !important;
 }
+}
+/* Для десктопов*/
+@media (min-width: 769px) {
+  .header__button {
+    margin-left: 0 !important;
+    margin-right: auto !important;
+  }
+}
+
+/* Для мобильных — оставляем как есть */
+@media (max-width: 768px) {
+  .header__button {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
+
+.game-detail__button {
+    transition: all 0.3s ease !important;
+}
+
+.game-detail__button:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+.game-card:hover {
+    transform: translateY(-5px) scale(1.02) !important;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2) !important;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+@media (min-width: 769px) {
+    .header__button:hover {
+        transform: translateY(-3px) !important;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2) !important;
+    }
+}
+
+@media (max-width: 360px) {
+    .header__title {
+        font-size: 28px !important;
+        line-height: 34px !important;
+    }
+    
+    .game-detail__title {
+        font-size: 20px !important;
+    }
+    
+    .game-detail__description {
+        font-size: 13px !important;
+    }
+}
+
+.game-detail__button:active {
+    transform: scale(0.98) !important;
+}
+
+@media (max-width: 768px) {
+    .game-card:hover {
+        transform: translateY(-3px) scale(1.01) !important;
+    }
+    
+    .game-detail__button:hover {
+        transform: translateY(-1px) !important;
+    }
 }
