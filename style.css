@@ -782,3 +782,18 @@ body {
     flex-direction: row !important;
 }
 }
+/* Для десктопов (ширина экрана больше 768px) */
+@media (min-width: 769px) {
+  .header__button {
+    margin-left: 0 !important;
+    margin-right: auto !important;
+  }
+}
+
+/* Для мобильных (ширина до 768px) — оставляем как есть */
+@media (max-width: 768px) {
+  .header__button {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}

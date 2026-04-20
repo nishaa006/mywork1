@@ -1,56 +1,38 @@
+console.log("Привет");
+console.log("Привет");
 
-// Задание 1
-let a = 10;
-alert(a);
-a = 20;
-alert(a);
+for (let i = 1; i <= 5; i++) {
+    console.log(i);
+}
 
-// Задание 2
-let iPhoneYear = 2007;
-alert(iPhoneYear);
+for (let i = 7; i <= 22; i++) {
+    console.log(i);
+}
 
-// Задание 3
-let jsCreator = "Брендан Эйх";
-alert(jsCreator);
-
-// Задание 4
-let num1 = 10;
-let num2 = 2;
-alert(num1 + num2);
-alert(num1 - num2);
-alert(num1 * num2); 
-alert(num1 / num2);
-
-// Задание 5
-let result = 2 ** 5;
-alert(result);
-
-// Задание 6
-let A = 9;
-let B = 2;
-alert(A % B);
-
-// Задание 7
-let num = 1;
-num += 5;
-num -= 3;
-num *= 7;
-num /= 3;
-num++;
-num--;
-alert(num);
-
-// Задание 8
-let age = prompt('Сколько вам лет?');
-alert(age);
-
-// Задание 9
-let user = {
-    name: 'Анна',
-    age: 25,
-    isAdmin: true
+const obj = {
+    "Коля": '200',
+    "Вася": '300',
+    "Петя": '400'
 };
 
-// Задание 10
-let userName = prompt('Ваше имя:');
-alert(`Привет, ${userName}!`);
+for (const key in obj) {
+    console.log(key + " — зарплата " + obj[key] + " долларов");
+}
+
+let n = 1000;
+let num = 0;
+
+while (n >= 50) {
+    n = n / 2;
+    num++;
+}
+
+console.log(n);
+console.log(num);
+
+const firstFriday = 5;
+const daysInMonth = 31;
+
+for (let day = firstFriday; day <= daysInMonth; day += 7) {
+    console.log("Сегодня пятница, " + day + "-е число. Необходимо подготовить отчет.");
+}
